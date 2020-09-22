@@ -144,9 +144,7 @@ function sendTransaction(isAdding) {
   });
 
 
-  // function saveRecord() {
-  //   UseIndexedDB("transation", "transactionStore", "put", transaction)
-  // }
+  
 }
 
 document.querySelector("#add-btn").onclick = function() {
