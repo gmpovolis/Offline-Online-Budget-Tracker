@@ -1,4 +1,4 @@
-export function useIndexedDB(transaction, storeTransaction, method, object){
+const UseIndexedDB = function (transaction, storeTransaction, method, object){
     
     new Promise((resolve, reject) => {
         const request = window.indexedDB.open(transaction, 1);
@@ -37,3 +37,5 @@ export function useIndexedDB(transaction, storeTransaction, method, object){
         };
     });
 };
+
+module.exports = UseIndexedDB;

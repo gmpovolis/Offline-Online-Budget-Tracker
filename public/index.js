@@ -1,4 +1,4 @@
-import { useIndexedDB } from "./indexedDB";
+const UseIndexedDB = require("./indexedDB");
 
 let transactions = [];
 let myChart;
@@ -147,7 +147,7 @@ function sendTransaction(isAdding) {
 
 
   function saveRecord() {
-    useIndexedDB("transation", "TransactionStore", "put", transaction)
+    UseIndexedDB("transation", "transactionStore", "put", transaction)
   }
 }
 
