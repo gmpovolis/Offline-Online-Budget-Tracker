@@ -1,41 +1,32 @@
-const UseIndexedDB = function (transaction, storeTransaction, method, object){
-    
-    new Promise((resolve, reject) => {
-        const request = window.indexedDB.open(transaction, 1);
-        const db = request.result;
-        let tr,
-            store;
+const request = window.indexedDB.open("transaction", 1);
+let db;
 
-        request.onupgradeneeded = function(e) {
-            db.createObjectStore(storeTransaction, { keyPath: "_id" });
-        };
-
-        request.onerror = function(e) {
-            console.log("There was an error", e.message);
-        };
-
-        request.onsuccess = function(e) {
-            tr = db.transaction(storeTransaction, "readwrite");
-            store = ts.objectStore(storeTransaction);
-
-            db.onerror = function(e) {
-                console.log("error", e.message);
-            };
-
-            if (method === "put"){
-                store.put(object);
-            };
-            if (method === "get"){
-                const all = store.getAll();
-                all.onsuccess = function() {
-                    resolve(all.result);
-                };
-            };
-            tr.oncomplete = function() {
-                db.close();
-            };
-        };
-    });
+request.onupgradeneeded = function(e) {
+    db= e.target.result;
+    db.createObjectStore("pending", { autoIncrement: true });
 };
 
-module.exports = UseIndexedDB;
+request.onsuccess = function(e) {
+db = e.target.result;
+if(navigator.onLine) {
+    checkDatabase();
+};
+
+request.onerror = function(e) {
+console.log("There was an error", e.target.errorCode);
+};
+
+if (method === "put"){
+    store.put(object);
+};
+
+if (method === "get"){
+    const all = store.getAll();
+    all.onsuccess = function() {
+        resolve(all.result);
+    };
+};
+tr.oncomplete = function() {
+    db.close();
+};
+};
