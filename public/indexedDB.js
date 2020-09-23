@@ -1,26 +1,26 @@
-const request = window.indexedDB.open("transaction", 1);
+const request = indexedDB.open("budget", 1);
 let db;
 
-request.onupgradeneeded = function(e) {
-    db= e.target.result;
+request.onupgradeneeded = function(event) {
+    const db= event.target.result;
     db.createObjectStore("pending", { autoIncrement: true });
 };
 
-request.onsuccess = function(e) {
-    db = e.target.result;
+request.onsuccess = function(event) {
+    db = event.target.result;
     if(navigator.onLine) {
         checkDatabase();
     };
 };
 
-request.onerror = function(e) {
-    console.log("There was an error", e.target.errorCode);
+request.onerror = function(event) {
+    console.log("There was an error", event.target.errorCode);
 };
 
-function saveRecord(change) {
+function saveRecord(record) {
     const transaction = db.transaction(["pending"], "readwrite");
     const store = transaction.objectStore("pending");
-    store.add(change);
+    store.add(record);
 };
 
 function checkDatabase() {
@@ -36,7 +36,7 @@ function checkDatabase() {
                 headers: {
                     Accept: "application/json, text/plain, */*",
                     "Content-Type": "application/json"
-                }
+                },
             })
             .then(response => response.json())
             .then(() => {
