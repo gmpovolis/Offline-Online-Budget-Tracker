@@ -3,9 +3,13 @@
 ## Table-Contents
 
 -[Description](#Description)
+
 -[Usage](#Usage)
+
 -[Demo](#Demo)
+
 -[Contributions](#Contributions)
+
 -[Questions](#Questions)
 
 ## Description
@@ -25,6 +29,8 @@ npm start
 ```
 
 ## Demo
+
+[Here](https://drive.google.com/file/d/1b2nCSz1NUXLoNeqTFJoNuJb6SqqtWZEG/view) is a video demonstration of the online and offline functionality of the app.
 
 ## Contributions
 
